@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="row col-md-12">
+    <div class="col-md-1 col-sm-12"><a class="navbar-brand">Deezer</a></div>
+    <div class="col-md-6 col-sm-12">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search"
+               [(ngModel)]="search" (input)="searchArtist()">
+      </form>
+    </div>
+    <div class="col-md-2  col-sm-12"></div>
+  </div>
+</nav>
+<div class="container" *ngIf="mode=='search'">
+  <div class="row">
+    <div class="col-md-4  mb-5" *ngFor="let artist of artists" (click)="viewArtist(artist)">
+      <div class="card">
+        <img class="card-img-top" [src]="artist.picture_medium" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{artist.name}}</h5>
+          <p class="card-text">{{artist.nb_fan > 1000 ? artist.nb_fan / 1000 + 'K' : artist.nb_fan}} Fans</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="mode=='artist'">
+  <div class="row bordered rounded-2 header-section">
+    <div class="col-md-8 p-5 bg-cover" [style]="'background-image: url('+artist.picture_big+');'">
+      <h2 class="text-white">{{artist.name}}</h2>
+      <h3 class=" text-white">{{artist.nb_fan > 1000 ? (artist.nb_fan / 1000) + 'K' : artist.nb_fan}} Fans</h3>
+    </div>
+    <div class="col-md-4">
+      <h2 class="mt-2">Top tracks</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let topTrack of top ; let i = index"><strong>{{i + 1}}
+          .</strong> {{topTrack.title}} <span class="float-end">{{topTrack.duration * 1000 | date:'mm:ss'}}</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row container mt-5">
+    <h2>Albums</h2>
+    <div class="col-md-3 bordered rounded-2 m-2 p-0" *ngFor="let album of albums">
+      <img [src]="album.cover_big" alt="" class="img-fluid">
+      <h2 class="p-2">{{album.title}}</h2>
+      <h3 class="p-2 mb-0">{{album.release_date.substr(0, 4)}}</h3>
+    </div>
+
+  </div>
+</div>

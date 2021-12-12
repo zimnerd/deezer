@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.search-form {
+  width:60%
+}
+.input-item,.mat-form-field{
+  width:100%;
+}
+
+input,.mat-form-field-outline{
+  padding:0 20px;
+
+}
+.bordered{
+  border:1px solid #dedede;
+}
